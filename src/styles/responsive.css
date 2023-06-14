@@ -1,0 +1,46 @@
+.disp{
+    display: none;
+}
+@media (max-width: 480px){
+    #contenedor_search_carrito{
+        display: none;
+    }
+    .disp{
+        display: block;
+    }
+
+    .display_block{
+        display: block !important;
+    }
+
+    .anim{
+        animation-name: menu;
+        animation-duration: 3s;
+    }
+}
+
+@media (max-width: 990px){
+    /* #contenedor_search_carrito{
+        display: none;
+    } */
+    /* .disp{
+        display: block;
+    } */
+
+    .display_block{
+        display: block !important;
+    }
+
+    .anim{
+        animation-name: menu;
+        animation-duration: 3s;
+    }
+}
+
+@keyframes menu {
+    from{
+        width: 0 !important;
+    }to{
+        width: 100% !important;
+    }
+}
