@@ -10,15 +10,15 @@ import { agregarAlCarrito } from "../redux/actions";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { corroborarStock } from "../tools/funcionesII";
-
+import host from './variables'
 
 export default function Inicio (){
-    
+    console.log(host)
     let dispatch = useDispatch()
     const [cards, setCards] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:3001/productos')
+        axios.get(`${host}/productos`)
         .then((res) => {
             let copia = res.data.slice(0,12)
             setCards(copia)

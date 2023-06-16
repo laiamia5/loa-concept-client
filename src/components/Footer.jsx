@@ -2,6 +2,8 @@ import React, { useEffect , useState} from "react";
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import '../styles/scroll.css'
+import host from './variables'
+
 
 export default function Footer (){
     const [info, setInfo] = useState({})
@@ -11,7 +13,7 @@ export default function Footer (){
     })
 
     useEffect(() => {
-        axios.get('http://localhost:3001/info')
+        axios.get(`${host}/info`)
         .then((res) => setInfo(res.data))
         .catch((err) => console.log(err))
     }, [])
@@ -21,7 +23,7 @@ export default function Footer (){
 	}
 
     const subscribirse = () => {
-        axios.post('http://localhost:3001/subscripcion', subs)
+        axios.post(`${host}/subscripcion`, subs)
     }
     return(
         <>

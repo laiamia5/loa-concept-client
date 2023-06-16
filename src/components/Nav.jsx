@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import {useSelector} from 'react-redux'
 import '../styles/responsive.css'
 import { useNavigate } from "react-router-dom";
+import host from './variables'
+
 
 export default function Nav () {
     let navigate = useNavigate()

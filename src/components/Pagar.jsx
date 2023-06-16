@@ -13,6 +13,8 @@ import { sacarTodosLosQueNoTienenStock } from "../redux/actions";
 import {useNavigate} from "react-router-dom";
 import { finalizarCompra } from "../redux/actions";
 import {controlarFormulario} from '../tools/formController'
+import host from './variables'
+
 
 export default function Pagar (){
     const dispatch = useDispatch()
@@ -81,7 +83,7 @@ export default function Pagar (){
                     console.log(ola)
                     
                     if( medioDePago === false ){//si eligio pagar atravez de mercado pago :
-                        await axios.post(`http://localhost:3001/pagar/${ola.id}`, [...carritoCompleto, {nombre: 'envio', cantidad: 1, precio: envio}])
+                        await axios.post(`${host}/pagar/${ola.id}`, [...carritoCompleto, {nombre: 'envio', cantidad: 1, precio: envio}])
                         .then((res) => window.open(res.data, '_blank'))
                         .catch((err) => alert(err))
                         // dispatch(finalizarCompra())//vacia el carrito 

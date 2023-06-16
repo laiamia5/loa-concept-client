@@ -1,4 +1,5 @@
 import axios from 'axios'
+import host from '../components/variables'
 
 //pago (pendiente o realizado), medio de pago
 //('mercado pago', 'transferencia bancaria')
@@ -11,7 +12,7 @@ export let procesarCompra = (productos, usuario, medioDePago) => {
 	  return new Promise((resolve, reject) => {
 		const promises = productos.map(async (ele) => {
 		  try {
-			const res = await axios.post('http://localhost:3001/realizar-pedido', {
+			const res = await axios.post(`${host}/realizar-pedido`, {
 			  talle: ele.talle,
 			  color: ele.color,
 			  cantidad: ele.cantidad,
@@ -43,12 +44,12 @@ export let procesarCompra = (productos, usuario, medioDePago) => {
 		//si el usuario existe pero no esta registrado o el usuario no existe lo creare
 		//a este punto ya tengo el id del usuario y el array de pedidos solo hacen falta los datos de la compra
 	  return new Promise((resolve, reject) => {
-		axios.get(`http://localhost:3001/usuarios/${usuario.dni}`)
+		axios.get(`${host}/usuarios/${usuario.dni}`)
 		  .then(async (res) => {
 			if (res.data) {
 			  await finalizarLaCompraBack(res.data.id);
 			} else {
-			  const response = await axios.post(`http://localhost:3001/usuarios/signup`, {
+			  const response = await axios.post(`${host}/usuarios/signup`, {
 				apellido: usuario.apellido,
 				direccion_barrio: usuario.direccion_barrio,
 				direccion_calles: usuario.direccion_calles,
@@ -74,7 +75,7 @@ export let procesarCompra = (productos, usuario, medioDePago) => {
 	const finalizarLaCompraBack = async (idUsuario) => {
 		try {
 		  const monto = await montoFinal(productos);
-		  const res = await axios.post('http://localhost:3001/compras', {
+		  const res = await axios.post(`${host}/compras`, {
 			usuarioId: idUsuario,
 			pedidos: idDelProd,
 			monto_final: monto,
@@ -105,7 +106,7 @@ export let procesarCompra = (productos, usuario, medioDePago) => {
 
 	// ...................................................................................................
 	const descontarStock = (id, cantidad) => {
-		axios.put(`http://localhost:3001/productos/descontar-stock/${id}`, {cantidad: cantidad})
+		axios.put(`${host}/productos/descontar-stock/${id}`, {cantidad: cantidad})
 		.then((res) => 'nose')
 		.then((err) => console.log(err))
 	}
@@ -120,7 +121,7 @@ export let procesarCompra = (productos, usuario, medioDePago) => {
 
 	export const obtenerElEnvio = async () => {
 		try {
-		  const response = await axios.get('http://localhost:3001/info');
+		  const response = await axios.get(`${host}/info`);
 		  return response.data.envio
 		} catch (error) {
 		  console.error(error);

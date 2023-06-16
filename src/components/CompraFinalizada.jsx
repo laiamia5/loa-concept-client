@@ -3,13 +3,15 @@ import axios from "axios";
 import {useParams} from 'react-router-dom';
 import { useState } from "react";
 import { ToastContainer, toast} from 'react-toastify';
+import host from './variables'
+
 
 
 export default function CompraFinalizada(){
     const [compra, setCompra] = useState(null)
     let { id } = useParams();
     useEffect(() => {
-        axios.get(`http://localhost:3001/compras/${id}`)
+        axios.get(`${host}/compras/${id}`)
         .then((res) =>{ 
             setCompra(res.data)
             console.log(res.data)

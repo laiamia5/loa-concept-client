@@ -6,6 +6,7 @@ import { agregarAlCarrito, agregarDesdeDetalle } from '../redux/actions'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { showToastMessage, corroborarStock } from "../tools/funcionesII";
+import host from './variables'
 
 export default function Detalle(){
     const [prod, setProd] = useState({})
@@ -13,7 +14,7 @@ export default function Detalle(){
     const dispatch = useDispatch()
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/productos/${id}`)
+        axios.get(`${host}/productos/${id}`)
         .then((res) => {
             setProd({...res.data, cantidad: 0})
             console.log(res.data)

@@ -11,6 +11,8 @@ import { agregarAlCarrito } from "../redux/actions";
 import '../styles/Tienda.css'
 import { useLocation } from "react-router-dom";
 import { corroborarStock } from "../tools/funcionesII";
+import host from './variables'
+
 
 export default function Tienda (props){
 
@@ -34,7 +36,7 @@ export default function Tienda (props){
     const handleProducts = (pagina) => {
 
         if(cantidad.length === 0){
-            axios.get(`http://localhost:3001/productos/paginado`)
+            axios.get(`${host}/productos/paginado`)
             .then((res) => {
                 setCantidad(res.data)
                 setPage(pagina)
@@ -52,7 +54,7 @@ export default function Tienda (props){
     }
 
     const handleSearch = (value, pag) => {
-        axios.get(`http://localhost:3001/productos/buscar?nombre=${value}`)
+        axios.get(`${host}/productos/buscar?nombre=${value}`)
         .then((res) => {
             if(res.data.length === 0) return showToastMessage('error', 'no se hallaron productos')
             else{
@@ -76,7 +78,7 @@ export default function Tienda (props){
     }
 
     const handleProductsForce = () => {
-        axios.get(`http://localhost:3001/productos/paginado`)
+        axios.get(`${host}/productos/paginado`)
         .then((res) => {
             setCantidad(res.data)
             setPage(0)
@@ -89,7 +91,7 @@ export default function Tienda (props){
     const handleFiltros = () => {
         let parametro = search.split('=')
         if(parametro[0].includes('filtrar')){
-            axios.get(`http://localhost:3001/productos/buscar?categoria=${parametro[1]}`)
+            axios.get(`${host}/productos/buscar?categoria=${parametro[1]}`)
             .then((res) => {
                 setCantidad(res.data)
                 setProductos(res.data[0])
@@ -98,7 +100,7 @@ export default function Tienda (props){
             .catch((err) => console.log(err) )
         }
         else {
-            axios.get(`http://localhost:3001/productos/buscar?nombre=${parametro[1]}`)
+            axios.get(`${host}/productos/buscar?nombre=${parametro[1]}`)
             .then((res) => {
                 setCantidad(res.data)
                 setProductos(res.data[0])
@@ -147,7 +149,7 @@ export default function Tienda (props){
         let resultQuery = await handleCheckBox()//funcion quesirve para ver que propiedades del objeto estan seteados en true, aquellos seteados en true, los guardara en un estado para posteriormente hacer la peticion
         // -----------------
         if(resultQuery.length !== 0 && arrayInicial.length !== 0){
-            axios.post(`http://localhost:3001/productos/filtrar?${resultQuery}`, arrayInicial)
+            axios.post(`${host}/productos/filtrar?${resultQuery}`, arrayInicial)
             .then((res) => {
                 console.log(res.data)
                 setCantidad(res.data)

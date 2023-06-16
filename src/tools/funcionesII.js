@@ -1,12 +1,11 @@
 import axios from 'axios'
 import { toast } from 'react-toastify';
 import store from '../redux/store';
-const cloudinaryUrl = process.env.CLOUDINARY_URL;
-
+import host from '../components/variables'
 
 export const datos = async () => {
     try {
-        const response = await axios.get('http://localhost:3001/info');
+        const response = await axios.get(`${host}/info`);
         return response.data
       } catch (error) {
         console.error(error);
@@ -25,7 +24,7 @@ export const showToastMessage = (status, mensaje) => {
 }
 
 export const corroborarStock = async (id, cantidad) => {
-  let stock = await axios.get(`http://localhost:3001/productos/${id}`).then((res) => res.data.stock).catch((err) => console.log(err))
+  let stock = await axios.get(`${host}/productos/${id}`).then((res) => res.data.stock).catch((err) => console.log(err))
   let ps = await store.getState().carrito.filter((ele) => ele.id == id).map((e) => e.cantidad)
   let sumario = await ps.reduce((acc, x) => acc + x , 0)
   let total = sumario + cantidad
@@ -58,7 +57,7 @@ export const cloudinary = async (element) => {
   formData.append('image', imageFile);
   
   try {
-    const response = await axios.post('http://localhost:3001/upload', formData);
+    const response = await axios.post(`${host}/upload`, formData);
     return response.data; // Retorna response.data
   } catch (error) {
     console.error(error); // Manejar el error como desees
@@ -67,7 +66,7 @@ export const cloudinary = async (element) => {
 };
 
 export const crearProd = (form) => {
-  axios.post('http://localhost:3001/productos', form)
+  axios.post(`${host}/productos`, form)
   .then((res) => console.log(res))
   .then((err) => console.log(err))
 }

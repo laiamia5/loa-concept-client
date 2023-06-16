@@ -2,6 +2,7 @@ import React, { useEffect , useState} from "react";
 import '../styles/allStyles.css'
 import '../styles/moreStyles.css'
 import axios from 'axios'
+import host from './variables'
 
 export default function Contacto (){
 
@@ -13,13 +14,13 @@ export default function Contacto (){
     })
 
     useEffect(() => {
-        axios.get('http://localhost:3001/info')
+        axios.get(`${host}/info`)
         .then((res) => setInfo(res.data))
         .catch((err) => console.log(err))
     }, [])
 
     const handleSubmit = () => {
-        axios.post('http://localhost:3001/info/contacto', datos)
+        axios.post(`${host}/info/contacto`, datos)
     }
 
     return(
