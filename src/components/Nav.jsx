@@ -41,10 +41,10 @@ const cambiarClase = () => {
                     </div>
                     <div class="col-lg-6 text-center text-lg-right">
                         <div class="d-inline-flex align-items-center">
-                            <a class="text-dark px-2" href="">
+                            <a class="text-dark px-2" href="https://www.facebook.com/profile.php?id=100093227119864">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
-                            <a class="text-dark px-2" href="">
+                            <a class="text-dark px-2" href="https://www.instagram.com/loa_concept/">
                                 <i class="fab fa-instagram"></i>
                             </a>
                             <a class="text-dark pl-2" href="">

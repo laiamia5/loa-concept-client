@@ -7,12 +7,11 @@ import { cloudinary, crearProd } from "../../tools/funcionesII";
 export default function Admin () {
 //arreglar q el stock y precio s deben ser vairables de tipo number
 
-
     const [form, setForm] = useState({
             nombre: null,
             precio: null,
             precio_anterior: null,
-            categoria: null,
+            categoria: 'tops',
             descripcion: null,
             marca: null,
             stock: null,
