@@ -10,10 +10,10 @@ import { agregarAlCarrito } from "../redux/actions";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { corroborarStock } from "../tools/funcionesII";
-import host from './variables'
+const host = process.env.REACT_APP_BACKEND_URL
 
 export default function Inicio (){
-    console.log(host)
+
     let dispatch = useDispatch()
     const [cards, setCards] = useState([])
 

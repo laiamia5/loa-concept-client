@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { toast } from 'react-toastify';
 import store from '../redux/store';
-import host from '../components/variables'
+const host = process.env.REACT_APP_BACKEND_URL
 
 export const datos = async () => {
     try {

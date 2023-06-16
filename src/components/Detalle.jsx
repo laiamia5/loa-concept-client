@@ -6,7 +6,7 @@ import { agregarAlCarrito, agregarDesdeDetalle } from '../redux/actions'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { showToastMessage, corroborarStock } from "../tools/funcionesII";
-import host from './variables'
+const host = process.env.REACT_APP_BACKEND_URL
 
 export default function Detalle(){
     const [prod, setProd] = useState({})

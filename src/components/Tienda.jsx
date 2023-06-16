@@ -11,8 +11,7 @@ import { agregarAlCarrito } from "../redux/actions";
 import '../styles/Tienda.css'
 import { useLocation } from "react-router-dom";
 import { corroborarStock } from "../tools/funcionesII";
-import host from './variables'
-
+const host = process.env.REACT_APP_BACKEND_URL
 
 export default function Tienda (props){
 

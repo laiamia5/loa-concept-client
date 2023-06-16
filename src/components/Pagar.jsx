@@ -13,8 +13,7 @@ import { sacarTodosLosQueNoTienenStock } from "../redux/actions";
 import {useNavigate} from "react-router-dom";
 import { finalizarCompra } from "../redux/actions";
 import {controlarFormulario} from '../tools/formController'
-import host from './variables'
-
+const host = process.env.REACT_APP_BACKEND_URL
 
 export default function Pagar (){
     const dispatch = useDispatch()

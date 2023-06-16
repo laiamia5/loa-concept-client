@@ -3,9 +3,7 @@ import axios from "axios";
 import {useParams} from 'react-router-dom';
 import { useState } from "react";
 import { ToastContainer, toast} from 'react-toastify';
-import host from './variables'
-
-
+const host = process.env.REACT_APP_BACKEND_URL
 
 export default function CompraFinalizada(){
     const [compra, setCompra] = useState(null)

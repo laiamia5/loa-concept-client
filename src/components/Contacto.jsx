@@ -2,7 +2,7 @@ import React, { useEffect , useState} from "react";
 import '../styles/allStyles.css'
 import '../styles/moreStyles.css'
 import axios from 'axios'
-import host from './variables'
+const host = process.env.REACT_APP_BACKEND_URL
 
 export default function Contacto (){
 

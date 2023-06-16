@@ -2,8 +2,7 @@ import React, { useEffect , useState} from "react";
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import '../styles/scroll.css'
-import host from './variables'
-
+const host = process.env.REACT_APP_BACKEND_URL
 
 export default function Footer (){
     const [info, setInfo] = useState({})

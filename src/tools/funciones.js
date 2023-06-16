@@ -1,5 +1,5 @@
 import axios from 'axios'
-import host from '../components/variables'
+const host = process.env.REACT_APP_BACKEND_URL
 
 //pago (pendiente o realizado), medio de pago
 //('mercado pago', 'transferencia bancaria')
