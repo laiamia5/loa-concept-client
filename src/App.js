@@ -19,7 +19,7 @@ import Faqs from './components/Faqs.jsx'
 const host = process.env.REACT_APP_BACKEND_URL
 
 function App() {
-  console.log(host)
+  console.log(host || 'no encontro la var')
 
   let carritoCompleto = useSelector(state => state.carrito)
   const scrollear = () => {
