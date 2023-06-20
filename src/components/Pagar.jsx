@@ -78,7 +78,7 @@ export default function Pagar (){
         }else{
             controlarFormulario(datos).then(async (res) =>{
                 if(res === true){
-                    let ola = await procesarCompra(carritoCompleto, datos, medioDePago)
+                    let ola = await procesarCompra(carritoCompleto, datos, medioDePago).then((res) => console.log(res))
                     console.log(ola)
                     
                     if( medioDePago === false ){//si eligio pagar atravez de mercado pago :
