@@ -78,26 +78,18 @@ export default function Pagar (){
         }else{
             controlarFormulario(datos).then(async (res) =>{
                 if(res === true){
-                    new Promise(async (resolve, reject) => {
-                        let ola = await procesarCompra(carritoCompleto, datos, medioDePago)
-                            console.log(ola)
-                          .then(async () => {
-                            if( medioDePago === false ){//si eligio pagar atravez de mercado pago :
-                                await axios.post(`${host}/pagar/${ola.id}`, [...carritoCompleto, {nombre: 'envio', cantidad: 1, precio: envio}])
-                                .then((res) => window.open(res.data, '_blank'))
-                                .catch((err) => alert(err))
-                                // dispatch(finalizarCompra())//vacia el carrito 
-                            }else{
-                                await navigate(`/compra-realizada/${ola.id}`);
-                                dispatch(finalizarCompra())
-                            }
-                            resolve();
-                          })
-                          .catch((err) => {
-                            console.log(err);
-                            reject(err);
-                          });
-                      });
+                    let ola = await procesarCompra(carritoCompleto, datos, medioDePago)
+                    console.log(ola)
+                    
+                    if( medioDePago === false ){//si eligio pagar atravez de mercado pago :
+                        await axios.post(`${host}/pagar/${ola.id}`, [...carritoCompleto, {nombre: 'envio', cantidad: 1, precio: envio}])
+                        .then((res) => window.open(res.data, '_blank'))
+                        .catch((err) => alert(err))
+                        // dispatch(finalizarCompra())//vacia el carrito 
+                    }else{
+                        await navigate(`/compra-realizada/${ola.id}`);
+                        dispatch(finalizarCompra())
+                    }
                 }else{
                     toast.error(res, {
                         position: toast.POSITION.TOP_RIGHT
