@@ -96,7 +96,7 @@ export let procesarCompra = (productos, usuario, medioDePago) => {
 		  console.log(respuesta);
 		  if(respuesta.medio_de_pago === 'mercado pago'){
 			axios
-			.post(`http://localhost:3001/pagar/${respuesta.id}`,[...respuesta.pedidos, {cantidad: 1, producto: {nombre: 'envio', precio: 1}}])
+			.post(`${host}/pagar/${respuesta.id}`,[...respuesta.pedidos, {cantidad: 1, producto: {nombre: 'envio', precio: 1}}])
 			.then((res) => {
 				console.log(res.data)
 				resolve(res.data)
