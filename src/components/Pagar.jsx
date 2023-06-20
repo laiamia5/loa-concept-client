@@ -80,12 +80,9 @@ export default function Pagar (){
                 if(res === true){
                     let ola = await procesarCompra(carritoCompleto, datos, medioDePago)
                     console.log(ola)
-                    
                     if( medioDePago === false ){//si eligio pagar atravez de mercado pago :
-                        await axios.post(`${host}/pagar/${ola.id}`, [...carritoCompleto, {nombre: 'envio', cantidad: 1, precio: envio}])
-                        .then((res) => window.open(res.data, '_blank'))
-                        .catch((err) => alert(err))
-                        // dispatch(finalizarCompra())//vacia el carrito 
+                        window.open(ola, '_blank')
+                        dispatch(finalizarCompra())//vacia el carrito 
                     }else{
                         await navigate(`/compra-realizada/${ola.id}`);
                         dispatch(finalizarCompra())

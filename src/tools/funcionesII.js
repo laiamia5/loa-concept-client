@@ -70,3 +70,10 @@ export const crearProd = (form) => {
   .then((res) => console.log(res))
   .then((err) => console.log(err))
 }
+
+export const obtenerCompra = async (idCompra) => {
+  return axios
+  .post(`${host}/compras/${idCompra}`)
+  .then((res) => res.data)
+  .catch((err) => console.log(err))
+}

@@ -88,12 +88,23 @@ export let procesarCompra = (productos, usuario, medioDePago) => {
 		  throw err;
 		}
 	  };
-  
+
+  //HARDCODIE EL ENVIOOOOOOOOO!!!!!!!!!! Y EL HOST
 	return new Promise((resolve, reject) => {
 	  realizarCompraBack(productos, usuario)
 		.then(() => {
 		  console.log(respuesta);
-		  resolve(respuesta);//la funcion en su totalidad retornara esta respuesta
+		  if(respuesta.medio_de_pago === 'mercado pago'){
+			axios
+			.post(`http://localhost:3001/pagar/${respuesta.id}`,[...respuesta.pedidos, {cantidad: 1, producto: {nombre: 'envio', precio: 1}}])
+			.then((res) => {
+				console.log(res.data)
+				resolve(res.data)
+			})
+			.catch((err) => alert(err))
+		  }else{
+			resolve(respuesta)
+		  }
 		})
 		.catch((err) => {
 		  console.log(err);
